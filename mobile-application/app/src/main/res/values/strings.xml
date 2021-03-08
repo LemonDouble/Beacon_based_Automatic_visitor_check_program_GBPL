@@ -1,0 +1,26 @@
+<resources>
+    <string name="app_name">Covid_check_program</string>
+    <string name="enter_button">Enter</string>
+    <string name="title_activity_privacy_policy">Privacy Policy</string>
+    <string name="large_text">
+        "We collect personal data from you. then, please read this Privacy Policy carefully, and check the agree button.\n\n"
+
+        "This Policy (the Policy) explains the way of treatment of the information which is provided or collected in the web sites on which this Policy is posted. In addition the Policy also explains the information which is provided or collected in the course of using the applications of the Company which exist in the websites or platforms of other company.\n\n"
+        "The Company is the controller of the information provided or collected in the websites on which this Policy is posted and in the course of using the applications of the Company which exist in the websites or platforms of other company.\n\n"
+        "Through this Policy, the Company regards personal information of the users as important and inform them of the purpose and method of Company's using the personal information provided by the users and the measures taken by the Company for protection of those personal information.\n\n"
+        "This Policy will be effective on the ___th day of ____, 2015 and, in case of modification thereof, the Company will make public notice of it through posting it on the bulletin board of Company's website or individual notice through sending mails, fax or e-mails)."
+        "The users or their legal representatives, as main agents of the information, may exercise the following rights regarding the collection, use and sharing of personal information by the Company:\n\n"
+        "• exercise right to access to personal information;\n"
+        "• make corrections or deletion;\n"
+        "• make temporary suspension of treatment of personal information\n"
+        "• request the withdrawal of their consent provided before\n\n"
+        "If, in order to exercise the above rights, you, as an user, use the menu of 'amendment of member information of webpage or contact the Company by sending a document or e-mails, or using telephone to the company(or person in charge of management of personal information or a deputy), the Company will take measures without delay: Provided that the Company may reject the request of you only to the extent that there exists either proper cause as prescribed in the laws or equivalent cause.\n\n\n\n\n"
+    </string>
+    <string name="action_settings">Settings</string>
+    <string name="check_agree">I agree</string>
+    <string name="go_to_next">Next</string>
+    <string name="form_title">Please Fill your Form</string>
+    <string name="form_name">Please enter your Name</string>
+    <string name="form_phone_number">Please enter your phone number</string>
+    <string name="form_email">Please enter your email</string>
+</resources>
