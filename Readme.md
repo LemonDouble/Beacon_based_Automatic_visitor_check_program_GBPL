@@ -30,7 +30,7 @@
   2. Android 기반, 스마트폰 어플리케이션 ( 리포지토리의 mobile-application 폴더) : 주변의 비콘 신호를 Scanning하고, 만약 감지된 신호가 있다면 통계 서버로 Http Request를 보내는 역할을 맡습니다.
   3. 통계 서버 ( 리포지토리의 backend-server 폴더) : HTTP Request를 받으면 해당 Request를 MongoDB에 저장합니다. 지정된 사이트에 들어가면 DB에서 데이터를 가져와, 지금까지의 방문자 내역을 출력해주는 역할도 합니다. ( 개인정보가 들어가는 특성상, 인증과 인가를 구현해야 하나 시간 상 구현하지 못 하였습니다.)
 
-![Untitled](%E1%84%8C%E1%85%A6%E1%84%86%E1%85%A9%E1%86%A8%20%E1%84%8B%E1%85%A5%E1%86%B9%E1%84%8B%E1%85%B3%E1%86%B7%2094962c0f62094567b1ba14482cc456d5/Untitled.png)
+![Untitled](https://github.com/LemonDouble/Beacon_based_Automatic_visitor_check_program_GBPL/blob/master/readmeImg/Untitled.png)
 
 ## 1. Beacon 작동 매커니즘 및 사용법
 
@@ -69,7 +69,7 @@
 - Beacon 스캔을 위해 Android Beacon Library를 사용하였습니다. ( [https://altbeacon.github.io/android-beacon-library/download.html](https://altbeacon.github.io/android-beacon-library/download.html) )
 - HTTP Request를 위하여 Retrofit2 Library를 사용하였습니다. ( [https://square.github.io/retrofit/](https://square.github.io/retrofit/) )
 
-![Untitled](%E1%84%8C%E1%85%A6%E1%84%86%E1%85%A9%E1%86%A8%20%E1%84%8B%E1%85%A5%E1%86%B9%E1%84%8B%E1%85%B3%E1%86%B7%2094962c0f62094567b1ba14482cc456d5/Untitled%201.png)
+![Untitled](https://github.com/LemonDouble/Beacon_based_Automatic_visitor_check_program_GBPL/blob/master/readmeImg/Untitled%201.png)
 
 - 유저 정보를 받기 위한 Activity들은 위와 같습니다.
 
@@ -78,7 +78,7 @@
   - 세 번째 화면은 개인 정보를 받는 화면입니다. 유저로부터 이름, 전화번호, 이메일 주소를 받습니다.
   - 네 번째 화면은 앱이 준비되었고, 비콘 스캔을 하는 화면입니다. 앱을 닫아도 백그라운드에서 작동하도록 구현하였습니다.
 
-  ![Untitled](%E1%84%8C%E1%85%A6%E1%84%86%E1%85%A9%E1%86%A8%20%E1%84%8B%E1%85%A5%E1%86%B9%E1%84%8B%E1%85%B3%E1%86%B7%2094962c0f62094567b1ba14482cc456d5/Untitled%202.png)
+  ![Untitled](https://github.com/LemonDouble/Beacon_based_Automatic_visitor_check_program_GBPL/blob/master/readmeImg/Untitled%202.png)
 
 - 위와 같이, 비콘이 작동하고 있는 경우 해당 Beacon Data를 수신할 수 있습니다.
 
@@ -89,4 +89,4 @@
 - DB로는 MongoDB를 사용하였고, mongoose를 사용하여 연결하였습니다.
 - 사용자가 미리 등록한 데이터를 기반으로, Android에서 수신받은 UUID, Major, Minor를 해당 Place 데이터로 바꾸고 저장합니다.
 
-![Untitled](%E1%84%8C%E1%85%A6%E1%84%86%E1%85%A9%E1%86%A8%20%E1%84%8B%E1%85%A5%E1%86%B9%E1%84%8B%E1%85%B3%E1%86%B7%2094962c0f62094567b1ba14482cc456d5/Untitled%203.png)
+![Untitled](https://github.com/LemonDouble/Beacon_based_Automatic_visitor_check_program_GBPL/blob/master/readmeImg/Untitled%203.png)
