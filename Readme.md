@@ -1,5 +1,8 @@
 # Beacon_based_Automatic_visitor_check_program_GBPL
 
+- We Have English Readme in the bottom!
+- if you want to read English Readme, please scroll down.
+
 ## 비콘 기반 자동 방문자 기록 프로그램
 
 이 프로젝트는
@@ -11,7 +14,7 @@
 - Ming Chi University of Technology (Taiwan)
 - Dong A University (Vietnam)
 
-총 5개국, 6개 국가가 참력하는 국제 협력 프로젝트의 결과물을 저장하는 레포지토리입니다.
+총 5개국, 6개 대학이 참여하는 국제 협력 프로젝트의 결과물을 저장하는 레포지토리입니다.
 
 (2021/02/22~ 2021/03/09 진행)
 
@@ -60,10 +63,7 @@
         식으로 매칭됩니다.
   - BLE_iBeacon.ino 파일의 45line에서 UUID를, 56, 57line에서 Major, Minor을 설정할 수 있습니다.
 
-### Mobile Phone (Android) 의 역할은 각 유저의 정보를 저장하고,
-
-비콘 정보를 수신하면 유저 정보와 비콘(위치) 정보를 취합하여
-통계 서버로 HTTP Request를 보내는 것입니다.
+### Mobile Phone (Android) 의 역할은 각 유저의 정보를 저장하고, 비콘 정보를 수신하면 유저 정보와 비콘(위치) 정보를 취합하여 통계 서버로 HTTP Request를 보내는 것입니다.
 
 - mobile-application 내부 폴더는 Android Studio의 프로젝트를 옮겨 놓은 것이므로, Android Studio로 열면 프로젝트를 볼 수 있습니다.
 - Beacon 스캔을 위해 Android Beacon Library를 사용하였습니다. ( [https://altbeacon.github.io/android-beacon-library/download.html](https://altbeacon.github.io/android-beacon-library/download.html) )
@@ -88,5 +88,97 @@
 - Node.js, Express.js를 사용하였습니다.
 - DB로는 MongoDB를 사용하였고, mongoose를 사용하여 연결하였습니다.
 - 사용자가 미리 등록한 데이터를 기반으로, Android에서 수신받은 UUID, Major, Minor를 해당 Place 데이터로 바꾸고 저장합니다.
+
+![Untitled](https://github.com/LemonDouble/Beacon_based_Automatic_visitor_check_program_GBPL/blob/master/readmeImg/Untitled%203.png)
+
+***
+
+# English Version
+
+## Beacon based Automatic visitor check program
+
+This project is held by..
+
+- 경북대학교 Kyungpook National University (Korea)
+- Shibaura Institute of Technology (Japan)
+- University of Technology Malaysia (Malaysia)
+- UCSI University (Malaysia)
+- Ming Chi University of Technology (Taiwan)
+- Dong A University (Vietnam)
+
+It is a repository that stores the results of international cooperation projects in which 6 universities and 5 countries participate.
+
+(2021/02/22~ 2021/03/09)
+
+## Background and purpose of the project
+
+- As of March 2021, due to the worldwide outbreak of Covid-19, almost all countries are make visit records for epidemiological investigation and tracking, by using handwriting, QR Code, ARS, etc.
+- However, all of the above three methods have the disadvantage that need to some 'action' is required to check the visit.
+  - The handwritten list could take the time to write.
+  - QR Code and ARS are simple compared to handwritten lists, but there is a pain in having to take out a cell phone and take a specific action.
+- Therefore, by using the  beacon and Bluetooth in the mobile phone, we develop a system that automatically make visiting record when the user runs the mobile phone application and walks around beacon.
+
+## How the whole project works
+
+- This project consists of three main parts.
+  1. ESP32 board-based Bluetooth beacon (Beacon_code_ESP32 folder in the repository): This is a beacon to be used by attaching it to a wall, or etc. This beacon is responsible for broadcasting your current location around you.
+  2. Android-based, smartphone application (mobile-application folder in the repository): It scans the near beacon signals, and if it detect signal, it takes the responsible of sending an Http Request to the statistics server.
+  3. Statistics Server (backend-server folder in the repository): When an HTTP Request is received, it stores the request data in MongoDB. When entering a statics site, it fetches data from the DB and also take a role in showing the visitor history. (authentication and authorization should be implemented Because we use personal information, but it was not implemented due to deadline. Please understand that.)
+
+![Untitled](https://github.com/LemonDouble/Beacon_based_Automatic_visitor_check_program_GBPL/blob/master/readmeImg/Untitled.png)
+
+## 1. Beacon's Working Mechanism and Usage
+
+- Data Format is Apple's iBeacon
+- We use Wemos D1 R32 board for testing.
+  - In Wemos D1 R32 board, Wifi and Bluetooth modules are built-in in the board, so it is convenient to develop without installing a separate module. so, we use this Board.
+- To use the ESP32 board, you need to install the relevant libraries. You can download it through ( https://github.com/espressif/arduino-esp32 ).
+
+### The role of Beacon is to broadcast UUID, Major, Minor information.
+
+- We assumed that UUID is used for Unique Identifier of each business site, Major is used for regional classification, and Major is used for detailed regional classification.
+  - Major and Minor are just numbers, but are later mapped to specific regions in the statistics server.
+  - For example, the raw data sent by the beacon is something like ea199aea-2fff-430a-ad7d-30f12334696c / 1 / 1 .
+  - After that, it maps to a specific physical address registered in the statistics server.
+  - The usage of UUID, Major, Minor is as follows.
+    - UUID (16byte): Identifies businesses such as Family Mart, 7-Eleven, and LAWSON.
+    - Major (2byte) : Separates a large area.
+      - 1, 2, 3, 4..
+      - After that, on the statistics server, 1 is mapped to Tokyo, 2 to Osaka
+    - Minor (2byte): Within the range of the major area, it distinguishes a small area.
+      - 1, 2, 3, 4...
+      - After that, it is mapped to a predetermined value in the statistics server.
+      - For example,
+        Major : 1, Minor : 1 -> Tokyo, Shibya,
+        Major : 1, Minor : 2 -> Tokyo, Akihabara
+        Major : 2, Minor : 1 -> Osaka, Dotonbori
+        
+  - You can set UUID at line 45 of the BLE_iBeacon.ino file, and Major and Minor at line 56 and 57.
+
+### The role of Mobile Phone (Android) is to store each user's information, and combine user information and beacon (location) information, when receiving beacon information. then send HTTP Request to the statistics server.
+
+- The folder inside mobile-application is the Android Studio project, so if you open it with Android Studio, you can use the project.
+- We used Android Beacon Library for Beacon Scan. (https://altbeacon.github.io/android-beacon-library/download.html)
+- Retrofit2 Library is used for HTTP Request. ( https://square.github.io/retrofit/ )
+
+![Untitled](https://github.com/LemonDouble/Beacon_based_Automatic_visitor_check_program_GBPL/blob/master/readmeImg/Untitled%201.png)
+
+- Activities to receive user information are as follows.
+
+  - The first screen is the app launch screen.
+  - We deals with personal information, so second screen is terms of service page.
+  - The third screen is the screen to receive personal information. We receive names, phone numbers, and email addresses from users.
+  - The fourth screen informs that the app is ready and performs a beacon scan. and we Implemented to work in the background even when the app is closed.
+
+  ![Untitled](https://github.com/LemonDouble/Beacon_based_Automatic_visitor_check_program_GBPL/blob/master/readmeImg/Untitled%202.png)
+
+- As above, if the beacon is working, you can receive the corresponding Beacon Data.
+
+### The role of the statistics server (backend server) is to receive and store HTTP requests.
+
+- The backend-server folder is that folder.
+- Node.js and Express.js were used.
+- We use MongoDB, and mongoose to connect.
+- Based on the data pre-registered by the user, the UUID, Major, Minor received from Android is replaced with the corresponding Place data and saved.
 
 ![Untitled](https://github.com/LemonDouble/Beacon_based_Automatic_visitor_check_program_GBPL/blob/master/readmeImg/Untitled%203.png)
