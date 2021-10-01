@@ -125,7 +125,7 @@ It is a repository that stores the results of international cooperation projects
   2. Android-based, smartphone application (mobile-application folder in the repository): It scans the near beacon signals, and if it detect signal, it takes the responsible of sending an Http Request to the statistics server.
   3. Statistics Server (backend-server folder in the repository): When an HTTP Request is received, it stores the request data in MongoDB. When entering a statics site, it fetches data from the DB and also take a role in showing the visitor history. (authentication and authorization should be implemented Because we use personal information, but it was not implemented due to deadline. Please understand that.)
 
-![Untitled](https://github.com/LemonDouble/Beacon_based_Automatic_visitor_check_program_GBPL/blob/master/readmeImg/Untitled.png)
+![Untitled](https://github.com/LemonDouble/Beacon_based_Automatic_visitor_check_program_GBPL/blob/master/readmeImg/Untitled%204.jpg)
 
 ## 1. Beacon's Working Mechanism and Usage
 
