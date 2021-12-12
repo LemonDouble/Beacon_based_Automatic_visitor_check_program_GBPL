@@ -182,5 +182,3 @@ It is a repository that stores the results of international cooperation projects
 - Based on the data pre-registered by the user, the UUID, Major, Minor received from Android is replaced with the corresponding Place data and saved.
 
 ![Untitled](https://github.com/LemonDouble/Beacon_based_Automatic_visitor_check_program_GBPL/blob/master/readmeImg/Untitled%203.png)
-
-- Test
