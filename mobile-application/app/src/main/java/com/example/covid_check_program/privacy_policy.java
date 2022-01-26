@@ -18,17 +18,17 @@ public class privacy_policy extends AppCompatActivity {
 
     public void goToFillForm(View view){
 
-        final CheckBox agree_check = (CheckBox)findViewById(R.id.agree_checkbox);
+        final CheckBox agree_check = findViewById(R.id.agree_checkbox);
 
-        if(agree_check.isChecked() == true){
-            Intent intent = new Intent(this, fillForm.class);
+        if (agree_check.isChecked()) {
+            Intent intent = new Intent(this, FillForm.class);
             startActivity(intent);
-        }else{
+        } else {
             AlertDialog.Builder alert_confirm = new AlertDialog.Builder(this);
             alert_confirm.setMessage("Please agree to continue!");
-                alert_confirm.setPositiveButton("OK",null);
-                AlertDialog alert = alert_confirm.create();
-                alert.show();
+            alert_confirm.setPositiveButton("OK",null);
+            AlertDialog alert = alert_confirm.create();
+            alert.show();
         }
 
     }

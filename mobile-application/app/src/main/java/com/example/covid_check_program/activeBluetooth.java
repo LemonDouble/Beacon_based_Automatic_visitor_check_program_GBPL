@@ -1,7 +1,6 @@
 package com.example.covid_check_program;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.NotificationCompat;
 import androidx.core.content.ContextCompat;
 
 import android.content.Intent;
@@ -10,12 +9,10 @@ import android.os.Bundle;
 import android.widget.TextView;
 
 public class activeBluetooth extends AppCompatActivity {
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_active_bluetooth);
-
 
         SharedPreferences userDataGetter = getSharedPreferences("userdata", MODE_PRIVATE);
 
@@ -34,6 +31,4 @@ public class activeBluetooth extends AppCompatActivity {
         Intent serviceIntent = new Intent(this, BeaconBackgroundService.class);
         ContextCompat.startForegroundService(this, serviceIntent);
     }
-
-    //Intent intent = new Intent(this, send_HTTP_request_Activity.class);
 }

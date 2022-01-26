@@ -8,25 +8,22 @@ import android.os.Bundle;
 import android.view.View;
 
 public class MainActivity extends AppCompatActivity {
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
     }
 
     public void goToPrivacyPolicy(View view){
         SharedPreferences userDataGetter = getSharedPreferences("userdata", MODE_PRIVATE);
         String userName = userDataGetter.getString("userName","");
 
+        Intent intent;
         if(!userName.equals("")){
-            Intent intent = new Intent(this, activeBluetooth.class);
-            startActivity(intent);
+            intent = new Intent(this, activeBluetooth.class);
         }else{
-            Intent intent = new Intent(this, privacy_policy.class);
-            startActivity(intent);
+            intent = new Intent(this, privacy_policy.class);
         }
+        startActivity(intent);
     }
 }

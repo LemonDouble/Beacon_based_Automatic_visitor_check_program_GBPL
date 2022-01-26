@@ -30,6 +30,7 @@ import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.util.Collection;
 import java.util.List;
+import java.util.Locale;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -117,9 +118,9 @@ public class BeaconBackgroundService extends Service implements BeaconConsumer {
                     userdata.setMinor(beacons.iterator().next().getId3().toString());
 
                     Timestamp timeStamp = new Timestamp(System.currentTimeMillis());
-                    SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+                    SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss", Locale.US);
 
-                    userdata.setTimeData(simpleDateFormat.format(timeStamp).toString());
+                    userdata.setTimeData(simpleDateFormat.format(timeStamp));
 
                     createPost();
 
@@ -135,19 +136,17 @@ public class BeaconBackgroundService extends Service implements BeaconConsumer {
                 }
             }
         });
-        try{
+        try {
             beaconManager.startRangingBeaconsInRegion(new Region("C2:02:DD:00:13:DD", null, null, null));
-        }catch(RemoteException e){
-
+        } catch (RemoteException e) {
+            e.printStackTrace();
         }
     }
-
 
     @Override
     public void onCreate(){
         super.onCreate();
     }
-
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId){
@@ -178,9 +177,6 @@ public class BeaconBackgroundService extends Service implements BeaconConsumer {
         Retrofit retrofit = new Retrofit.Builder().baseUrl(BASEURL).addConverterFactory(GsonConverterFactory.create()).build();
 
         jsonPlaceHolderApi = retrofit.create(JsonPlaceHolderApi.class);
-
-
-
 
         return START_STICKY;
     }
